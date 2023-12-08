@@ -14,23 +14,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainBinding.findButton.setOnClickListener{
-            val cities = arrayOf(" ","Adana","Adıyaman","Afyon","Ağrı","Amasya","Ankara","Antalya","Artvin","Aydın","Balıkesir",)
+            val cities = arrayOf("Adana","Adıyaman","Afyon","Ağrı","Amasya","Ankara","Antalya","Artvin","Aydın","Balıkesir",)
             if (mainBinding.iPlate.text.toString().isNotEmpty()){
                 var plateCode = mainBinding.iPlate.text.toString().toInt()
-                when (plateCode){
-                    1 -> mainBinding.cityName.text = cities[1]
-                    2 -> mainBinding.cityName.text = cities[2]
-                    3 -> mainBinding.cityName.text = cities[3]
-                    4 -> mainBinding.cityName.text = cities[4]
-                    5 -> mainBinding.cityName.text = cities[5]
-                    6 -> mainBinding.cityName.text = cities[6]
-                    7 -> mainBinding.cityName.text = cities[7]
-                    8 -> mainBinding.cityName.text = cities[8]
-                    9 -> mainBinding.cityName.text = cities[9]
-                    10 -> mainBinding.cityName.text = cities[10]
-                    else ->{
-                        mainBinding.cityName.text = "Bulunamadı"
-                    }
+                try {
+                    mainBinding.cityName.text = cities[plateCode-1]
+                }
+                catch (e:ArrayIndexOutOfBoundsException) {
+                    mainBinding.cityName.text = "Bulunamadı"
                 }
             }
             else{
